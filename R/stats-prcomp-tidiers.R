@@ -44,8 +44,8 @@
 #'   
 #'   \item{`PC`}{An integer vector indicating the principal component}
 #'   \item{`std.dev`}{Standard deviation explained by this PC}
-#'   \item{`percent`}{Percentage of variation explained}
-#'   \item{`cumulative`}{Cumulative percentage of variation explained}
+#'   \item{`proportion`}{Proportion of variation explained}
+#'   \item{`cumulative`}{Cumulative proportion of variation explained}
 #' 
 #' @details See https://stats.stackexchange.com/questions/134282/relationship-between-svd-and-pca-how-to-use-svd-to-perform-pca
 #'   for information on how to interpret the various tidied matrices. Note
@@ -100,7 +100,7 @@ tidy.prcomp <- function(x, matrix = "u", ...) {
 
   ncomp <- NCOL(x$rotation)
   if (matrix %in% c("pcs", "d", "eigenvalues")) {
-    nn <- c("std.dev", "percent", "cumulative")
+    nn <- c("std.dev", "proportion", "cumulative")
     ret <- fix_data_frame(t(summary(x)$importance),
       newnames = nn,
       newcol = "PC"
